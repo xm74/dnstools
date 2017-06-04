@@ -59,9 +59,9 @@ esac
 
 # Get e-mail address from certs CN=
 email=`openssl $ctype -noout -subject -nameopt multiline -in $4 | sed -n 's/ *commonName *= //p'`
-local=`echo $email | cut -d "@" -f 1`
-domain=`echo $email | cut -d "@" -f 2`
-if [ "$local" == "$domain" ]
+local=`echo $email | cut -d '@' -f 1`
+domain=`echo $email | cut -d '@' -f 2`
+if [ "$local" = "$domain" ]
 then
         echo "Wrong e-mail address <$email> in CN!"
         exit 1
