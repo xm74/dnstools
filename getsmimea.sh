@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Creates SMIMEA DNS record from S/MIME certifiate
-# v.20170602 (c)2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
+# v.20170605 (c)2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
 #
 # Usage: getsmimea.sh usage selector type /path/to/cert
 #
