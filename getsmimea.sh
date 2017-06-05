@@ -23,7 +23,7 @@ fi
 openssl x509 -in $4 -noout 2>/dev/null
 if [ $? != 0 ]
 then
-        echo "Wrong certificate type!"
+        echo "Unsupported certificate type!"
         exit 1
 fi
 
