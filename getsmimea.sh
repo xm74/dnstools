@@ -66,5 +66,6 @@ then
         exit 1
 fi
 
-
-echo "`sha256 -s $local | cut -d ' ' -f 4 | cut -c 1-56`._smimecert.$domain     IN SMIMEA $1 $2 $3 ( $cert ) ; $email"
+echo "`sha256 -s $local | cut -d ' ' -f 4 | cut -c 1-56`._smimecert.$domain     IN SMIMEA $1 $2 $3 ( "
+echo -n $cert | fold -w64 | sed 's/.*/  "&"/'
+echo " ) ; $email"
