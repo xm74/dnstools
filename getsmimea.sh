@@ -20,11 +20,10 @@ then
 fi
 
 # Detect certificate type
-openssl x509 -in $4 -noout 2>/dev/null; [ $? = 0 ] && ctype="x509"
-openssl req -in $4 -noout 2>/dev/null; [ $? = 0 ] && ctype="req"
-if [ ! $ctype ]
+openssl x509 -in $4 -noout 2>/dev/null
+if [ $? != 0 ]
 then
-        echo "Unrecognized certificate type"
+        echo "Wrong certificate type!"
         exit 1
 fi
 
@@ -37,15 +36,15 @@ esac
 case $2 in
         0) if [ $3 != 0 ]
            then
-                cert=`openssl $ctype -in $4 -outform DER | openssl $hash | cut -d ' ' -f 2`
+                cert=`openssl x509 -in $4 -outform DER | openssl $hash | cut -d ' ' -f 2`
            else
-                cert=`openssl $ctype -in $4 -outform DER | hexdump -ve '/1 "%02x"'`
+                cert=`openssl x509 -in $4 -outform DER | hexdump -ve '/1 "%02x"'`
            fi;;
         1) if [ $3 != 0 ]
            then
-                cert=`openssl $ctype -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -$hash -binary | hexdump -ve '/1 "%02x"'`
+                cert=`openssl x509 -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -$hash -binary | hexdump -ve '/1 "%02x"'`
            else
-                cert=`openssl $ctype -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | hexdump -ve '/1 "%02x"'`
+                cert=`openssl x509 -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | hexdump -ve '/1 "%02x"'`
            fi;;
         *) echo "Wrong selecor argument value '$2'!"; exit 1;;
 esac
@@ -58,7 +57,7 @@ case $1 in
 esac
 
 # Get e-mail address from certs CN=
-email=`openssl $ctype -noout -subject -nameopt multiline -in $4 | sed -n 's/ *commonName *= //p'`
+email=`openssl x509 -noout -subject -nameopt multiline -in $4 | sed -n 's/ *commonName *= //p'`
 local=`echo $email | cut -d '@' -f 1`
 domain=`echo $email | cut -d '@' -f 2`
 if [ "$local" = "$domain" ]
@@ -66,5 +65,6 @@ then
         echo "Wrong e-mail address <$email> in CN!"
         exit 1
 fi
+
 
 echo "`sha256 -s $local | cut -d ' ' -f 4 | cut -c 1-56`._smimecert.$domain     IN SMIMEA $1 $2 $3 ( $cert ) ; $email"
