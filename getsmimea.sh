@@ -42,7 +42,7 @@ case $2 in
            fi;;
         1) if [ $3 != 0 ]
            then
-                cert=`openssl x509 -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | openssl dgst -$hash -binary | hexdump -ve '/1 "%02x"'`
+                cert=`openssl x509 -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | $hash`
            else
                 cert=`openssl x509 -in $4 -noout -pubkey | openssl pkey -pubin -outform DER | hexdump -ve '/1 "%02x"'`
            fi;;
