@@ -36,7 +36,7 @@ esac
 case $2 in
         0) if [ $3 != 0 ]
            then
-                cert=`openssl x509 -in $4 -outform DER | openssl $hash | cut -d ' ' -f 2`
+                cert=`openssl x509 -in $4 -outform DER | $hash`
            else
                 cert=`openssl x509 -in $4 -outform DER | hexdump -ve '/1 "%02x"'`
            fi;;
