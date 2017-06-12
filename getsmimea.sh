@@ -37,7 +37,7 @@ esac
 case $2 in
         0) c1=":"; c2="openssl x509 -in $4 -outform DER";;
         1) c1="openssl x509 -in $4 -noout -pubkey"; c2="openssl pkey -pubin -outform DER";;
-        *) echo "Wrong selecor argument value '$2'!"; exit 1;;
+        *) echo "Wrong selector argument value '$2'!"; exit 1;;
 esac
 case $3 in
         0) hash=`$c1 | $c2 | hexdump -ve '/1 "%02x"'`;;
