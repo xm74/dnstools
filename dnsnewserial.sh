@@ -33,7 +33,7 @@ fi
 
 newser=`date '+%Y%m%d'`
 
-if [ `expr $curser : $newser` = 8 ]     # if today serial already changed
+if [ `expr $curser : $newser` = 8 ]     # if today serial was already changed
 then
         newser=`expr $curser + 1`       # increment it
 else
