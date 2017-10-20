@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Common config for DNSSEC zone management tools
+# v.20170612 (c)2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
+#
+# Please adjust settings acording your keys rollover policy
+
+nsddir="/usr/local/etc/nsd"             # path to NSD root
+
+arcage="4233600"                        # ZSK age to archive (49D)
+oldage="3628800"                        # ZSK age to start rotation (42D)
+keygap="1814400"                        # minimum interval beetween ZSK issue (21D)
+kskage="15552000"                       # KSK rotation interval (180D); if 0 - manual issue
