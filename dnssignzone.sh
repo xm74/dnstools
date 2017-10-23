@@ -47,7 +47,7 @@ sigopt="-n -t 100 -s `head -c 512 /dev/random | shasum | cut -b 1-16`"
                                         # zone signing options
 
 ## Get actual keys list
-ZSK=`find $zonedir/*.key -mtime -${oldage}s -exec grep -il '256 3' {} \; | xargs ls -tr | head -1 | sed 's/\.key$//'`
+ZSK=`find $zonedir/*.key -mtime -${arcage}s -exec grep -il '256 3' {} \; | xargs ls -tr | head -1 | sed 's/\.key$//'`
                                         # get oldest existing ZSK
 KSK=`find $zonedir/*.key -exec egrep -il '(257|385) 3' {} \; | sed 's/\.key$//'`
                                         # get all existing KSK
