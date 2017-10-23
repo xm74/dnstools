@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Rotate ZSK key pair for DNSSEC zone
-# v.20170531 (c)2016-2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
+# v.20171023 (c)2016-2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
 #
 # 0 5 * * * root /usr/local/etc/nsd/dnszskrotate.sh >/dev/null 2>&1
 
@@ -83,7 +83,7 @@ do
                         if [ -z "$chk" ]
                         then
                                 # create new keys pair
-                                alg=`echo $cur | cut -d + -f 2 | sed 's/^0*//'`
+                                alg=`find *.key -exec egrep -il '257 3' {} \; | xargs ls -t | head -1 | cut -d + -f 2 | sed 's/^0*//'`
                                                 # detect algorithm
                                 new=`ldns-keygen -a $alg $dom`
                                 logwrite "    New ZSK pair $new was created"
