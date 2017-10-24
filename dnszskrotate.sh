@@ -3,7 +3,7 @@
 # Rotate ZSK key pair for DNSSEC zone
 # v.20171023 (c)2016-2017 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
 #
-# 0 5 * * * root /usr/local/etc/nsd/dnszskrotate.sh >/dev/null 2>&1
+# 0 5 * * * root /path/to/dnszskrotate.sh >/dev/null 2>&1
 
 # Warning!
 # Require ldns toolset
