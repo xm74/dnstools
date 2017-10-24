@@ -37,7 +37,7 @@ if [ `expr $curser : $newser` = 8 ]     # if serial today was already changed
 then
         newser=`expr $curser + 1`       # increment it
 else
-        newser=${newser}00              # else assing new
+        newser=${newser}00              # else assign new
 fi
 
 # write new serial to zone file
