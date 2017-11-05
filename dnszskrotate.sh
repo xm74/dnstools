@@ -11,7 +11,7 @@
 
 ## Settings
 # read settings
-mypath=`dirname $0 | realpath`
+mypath=`dirname $0 | xargs realpath`
 if [ ! -f ${mypath}/dnstools.cf ]
 then
         echo "Configuration file dnstools.cf not found!"
