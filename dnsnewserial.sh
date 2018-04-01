@@ -5,8 +5,6 @@
 #
 # Usage: dnsnewserial.sh /path/to/zone/file
 #
-# Warning!
-# Serial must be placed in separate string with text "serial" as comment.
 
 # Check arguments
 if [ $# -ne 1 ]
@@ -23,7 +21,7 @@ then
 fi
 
 # get current serial
-curser=`grep "serial" $1 | tr -cd "[:digit:]"`
+curser=`cat $1 | awk -v RS='@' '$1 == "IN" && $2 == "SOA" { print $6 }'`
 
 if [ -z "$curser" ]
 then
@@ -41,7 +39,7 @@ else
 fi
 
 # write new serial to zone file
-sed -i.bak "s/.*serial/         $newser \; serial/" $1
+sed -i.bak "s/(.*)$curser(.*)/\1$newser\2/" $1
 
 # print new serial as confirmation
 echo $newser
