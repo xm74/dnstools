@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Change DNS zone serial in YYYYMMDDNN format
-# v.20170104 (c)2016-18 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
+# v.20180401 (c)2016-18 by Max Kostikov http://kostikov.co e-mail: max@kostikov.co
 #
 # Usage: dnsnewserial.sh /path/to/zone/file
 #
