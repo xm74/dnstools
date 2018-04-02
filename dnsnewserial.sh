@@ -39,7 +39,7 @@ else
 fi
 
 # write new serial to zone file
-sed -i.bak "s/(.*)$curser(.*)/\1$newser\2/" $1
+sed -i.bak "s/$curser/$newser/" $1
 
 # print new serial as confirmation
 echo $newser
