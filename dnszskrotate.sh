@@ -21,7 +21,7 @@ else
 fi
 
 # prepare parameters
-zonedir="$nsddir/zones"                 # path to zones dir
+zonedir="$nsddir/zones"                 # path to zones dir, every domain zone in separated subdirectory with domain name
 arcdir="$nsddir/archive"                # path to archive storage
 log="$nsddir/var/log/dnsrotate.log"     # path to log file
 
