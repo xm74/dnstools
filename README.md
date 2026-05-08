@@ -7,4 +7,7 @@ DNSSEC shell script tools for secure DNS zone deployment and process automation 
  - **dnstools.cf** — common settings for DNSSEC tools
  - **getsmimea.sh** — creates SMIMEA DNS record using provided X509 file
 
+Please see this article on details (currently available in Russian only)
+https://kostikov.co/podderzhka-dnssec-i-rotaciya-klyuchej-cifrovoj-podpisi
+
  *Requires [ldns](https://www.nlnetlabs.nl/projects/ldns/) toolset*
